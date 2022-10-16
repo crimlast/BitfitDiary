@@ -13,6 +13,12 @@ interface JournalDao {
     @Query("DELETE FROM journal")
     fun deleteAll()
 
+    @Query("SELECT AVG(mood) as averageMood FROM journal")
+    fun averageMood(): Int
+
+    @Query("SELECT COUNT(mood) FROM journal")
+    fun getRowCount(): Int
+
     @Insert
     fun insertAll(journals: List<Diary>)
 

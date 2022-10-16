@@ -17,14 +17,15 @@ class DetailActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
         val detail = findViewById<EditText>(R.id.detail_input)
         val date = findViewById<EditText>(R.id.date_input)
+        val mood = findViewById<EditText>(R.id.mood_input)
 
         button.setOnClickListener {
             lifecycleScope.launch(IO) {
-                val j = Diary(date.text.toString(), detail.text.toString())
+                val m = mood.text.toString()
+                val j = Diary(date.text.toString(), detail.text.toString(), m.toInt())
                 (application as JournalApplication).db.journalDao().insert(j)
             }
-            val myIntent = Intent(this, MainActivity::class.java)
-            startActivityForResult(myIntent, 0)
+            finish()
         }
 
 

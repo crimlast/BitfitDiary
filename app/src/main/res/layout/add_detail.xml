@@ -5,14 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
-    >
+
+    <EditText
+        android:id="@+id/mood_input"
+        android:layout_width="285dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="28dp"
+        android:autofillHints=""
+        android:hint="&quot;insert 1-10(10 is happiest)&quot;"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="#4E4E4E"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_input" />
+
+    <TextView
+        android:id="@+id/details2"
+        android:layout_width="59dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Mood"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_input" />
 
     <EditText
         android:id="@+id/detail_input"
         android:layout_width="285dp"
         android:layout_height="48dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
         android:autofillHints=""
         android:hint="&quot;Put details here&quot;"
         android:inputType="text"
@@ -23,16 +47,6 @@
         app:layout_constraintTop_toBottomOf="@+id/details" />
 
     <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Date: "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,6 +55,16 @@
         android:text="Details:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Date: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/date_input"

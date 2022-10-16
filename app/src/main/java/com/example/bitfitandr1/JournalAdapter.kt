@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.init
 
 class JournalAdapter(private val context: Context, private val Entries: List<Diary>) :
     RecyclerView.Adapter<JournalAdapter.ViewHolder>() {
@@ -31,6 +32,7 @@ class JournalAdapter(private val context: Context, private val Entries: List<Dia
 
             private val dateTV = itemView.findViewById<TextView>(R.id.dateView)
             private val detailTV = itemView.findViewById<TextView>(R.id.detailView)
+            private val moodTV = itemView.findViewById<TextView>(R.id.moodView)
 
             init {
                 itemView.setOnClickListener(this)
@@ -39,6 +41,7 @@ class JournalAdapter(private val context: Context, private val Entries: List<Dia
             fun bind(entry: Diary) {
                 dateTV.text = entry.date
                 detailTV.text = entry.detail
+                moodTV.text = entry.mood.toString()
 
             }
 
@@ -46,6 +49,8 @@ class JournalAdapter(private val context: Context, private val Entries: List<Dia
                 // Get selected article
 
             }
+
+
         }
 
 }

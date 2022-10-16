@@ -4,17 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bitfitandr1.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
-    private val journals = mutableListOf<Diary>()
-    private lateinit var recyclerView: RecyclerView
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,39 +25,33 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val fragmentManager: FragmentManager = supportFragmentManager
 
-        setContentView(R.layout.activity_main)
+        // define your fragments here
+        val frag1: Fragment = FirstFragment()
+        val frag2: Fragment = SecondFragment()
 
-        recyclerView = findViewById(R.id.list)
-        val diaryAdapter = JournalAdapter(this, journals)
-        recyclerView.adapter = diaryAdapter
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        recyclerView.layoutManager = LinearLayoutManager(this).also {
-            val dividerItemDecoration = DividerItemDecoration(this, it.orientation)
-            recyclerView.addItemDecoration(dividerItemDecoration)
-        }
-
-        val button = findViewById<Button>(R.id.button2);
-        lifecycleScope.launch {
-            (application as JournalApplication).db.journalDao().getAll().collect {
-                    databaseList ->
-                databaseList.map { entry ->
-                    Diary(
-                        entry.date,
-                        entry.detail,
-                    )
-                }.also { mappedList ->
-                    journals.clear()
-                    journals.addAll(mappedList)
-                    diaryAdapter.notifyDataSetChanged()
-                }
+        // handle navigation selection
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            lateinit var fragment: Fragment
+            when (item.itemId) {
+                R.id.nav_entries -> fragment = frag1
+                R.id.nav_mood -> fragment = frag2
             }
+
+            replaceFragment(fragment)
+            true
         }
 
-        button.setOnClickListener {
-            val myIntent = Intent(this, DetailActivity::class.java)
-            startActivityForResult(myIntent, 0)
-        }
+        bottomNavigationView.selectedItemId = R.id.nav_mood
 
+    }
+    private fun replaceFragment(frag: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.diary_frame_layout, frag)
+        fragmentTransaction.commit()
     }
 }

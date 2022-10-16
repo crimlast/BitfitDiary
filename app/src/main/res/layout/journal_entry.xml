@@ -33,8 +33,8 @@
 
     <TextView
         android:id="@+id/detailView"
-        android:layout_width="372dp"
-        android:layout_height="111dp"
+        android:layout_width="394dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
@@ -45,4 +45,30 @@
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/journal" />
+
+    <TextView
+        android:id="@+id/moodView"
+        android:layout_width="101dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        android:textColor="#50A3AE"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.685"
+        app:layout_constraintStart_toEndOf="@+id/mood"
+        app:layout_constraintTop_toBottomOf="@+id/detailView" />
+
+    <TextView
+        android:id="@+id/mood"
+        android:layout_width="243dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Mood(1 is sad, 10 is happy):"
+        android:textColor="#FBFBFB"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
